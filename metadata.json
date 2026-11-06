@@ -1,0 +1,6 @@
+{
+  "name": "NORGE TV",
+  "description": "Svensk försäljningsplattform för NORGE TV premiumabonnemang: livekanaler, ett omfattande film- och seriekatalog, abonnemang, kundomdömen och en interaktiv betalningsmodul.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
