@@ -23,6 +23,7 @@ import { getPostBySlug } from "./data/allPosts";
 import { getBlogText } from "./blogI18n";
 import { getTerms } from "./termsText";
 import type { LangCode } from "./i18n";
+import { SITE_LANG } from "./i18n";
 import RichText from "./components/RichText";
 import { getKeywordPage } from "./data/keywordPages";
 import SiteLinks from "./components/SiteLinks";
@@ -94,24 +95,9 @@ function setMetaByName(name: string, content: string) {
 
 function GeoRedirect() {
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem("dark.lang");
-      if (stored && isHomeLang(stored)) {
-        window.location.replace(`/${stored}`);
-        return;
-      }
-    } catch { /* ignore */ }
-
-    fetch("https://get.geojs.io/v1/ip/country.json")
-      .then(r => r.json())
-      .then((data: { country: string }) => {
-        const c = (data.country || "").toUpperCase();
-        // English markets go to /en; Sweden and the Nordics (and everything
-        // else) land on /sv, the default market.
-        if (c === "GB" || c === "IE" || c === "US") window.location.replace("/en");
-        else window.location.replace("/no");
-      })
-      .catch(() => window.location.replace("/no"));
+    // Single-market site: the home always resolves to the site's own language.
+    // No geo lookup, no stored-language override, so the default never drifts to /de or /sv.
+    window.location.replace(`/${SITE_LANG}`);
   }, []);
 
   return (
