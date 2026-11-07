@@ -30,7 +30,7 @@ const BRAND = "NORGE TV";
 // and break this byte-for-byte match. Use a plain separator (| or —) instead.
 const TPL_HTML_TAG = '<html lang="sv">';
 const TPL_CANONICAL = `<link rel="canonical" href="${SITE}/" />`;
-const TPL_TITLE = "<title>IPTV Sverige | Köp IPTV abonnemang — bästa IPTV</title>";
+const TPL_TITLE = "<title>NORGE TV | Norge IPTV — Kjøp IPTV abonnement 4K/8K</title>";
 
 const template = readFileSync(resolve(DIST, "index.html"), "utf8");
 
@@ -452,14 +452,28 @@ for (const tLang of HOME_LANGS) {
 
 // ---- homepage (per language) -----------------------------------------------
 const HOME_TITLE: Record<string, string> = {
+  no: "NORGE TV | Norge IPTV — Kjøp IPTV abonnement 4K/8K",
   sv: "IPTV Sverige | Köp IPTV abonnemang — bästa IPTV",
   en: "IPTV Sweden | Buy Swedish IPTV — Premium IPTV Provider",
 };
 const HOME_DESC: Record<string, string> = {
+  no: "Norge IPTV med NORGE TV: 69 000+ livekanaler og 220 000+ filmer og serier i opptil 8K. IPTV for Smart TV, Android og Fire TV — uten bindingstid. ★ 4.9/5",
   sv: "Köp IPTV abonnemang i Sverige hos din bästa IPTV leverantör: 69 000+ livekanaler, 220 000+ filmer och serier i upp till 8K. IPTV för Smart TV, Android och Fire TV — utan bindningstid.",
   en: "IPTV Sweden made simple: buy Swedish IPTV from a premium IPTV provider. 69,000+ live channels, 220,000+ movies and series in up to 8K. Works on Smart TV, Android and Fire TV.",
 };
 const HOME_BODY: Record<string, string[]> = {
+  no: [
+    `<h1>Norge IPTV — NORGE TV Premium IPTV abonnement 4K/8K</h1>`,
+    `<p>NORGE TV er din premium IPTV-leverandør i Norge: med et IPTV abonnement får du over 69 000 livekanaler og 220 000 filmer og serier on demand, i opptil 8K Ultra HD. IPTV erstatter kabel-TV pluss Netflix, Disney+ og en sportspakke, til en transparent pris og uten bindingstid. Fungerer på Smart TV, Android, Fire TV, MAG-bokser og flere enheter.</p>`,
+    `<h2>Hvorfor velge NORGE TV?</h2>`,
+    `<ul>`,
+    `<li>69 000+ livekanaler fra Norge og hele Europa, inkludert Eliteserien og Champions League</li>`,
+    `<li>220 000+ filmer og serier som VOD, oppdatert hver uke</li>`,
+    `<li>Bildekvalitet i opptil 8K Ultra HD</li>`,
+    `<li>Uten bindingstid, aktivering på minutter og support via WhatsApp</li>`,
+    `</ul>`,
+    `<p>Norge IPTV har aldri vært enklere: velg abonnement, betal trygt og se på under 5 minutter.</p>`
+  ],
   sv: [
     `<h1>Köp IPTV i Sverige — premium IPTV abonnemang hos din IPTV leverantör</h1>`,
     `<p>NORGE TV är din bästa IPTV leverantör för Sverige och Norden: vill du köpa IPTV får du här över 69 000 livekanaler och 220 000 filmer och serier som video-on-demand — i upp till 8K Ultra HD. Ett IPTV abonnemang ersätter kabel-TV plus Netflix, Disney+ och ett sportpaket, till ett transparent pris och utan bindningstid. Kompatibel med Smart TV, Android, Fire TV, MAG-boxar och fler enheter.</p>`,
