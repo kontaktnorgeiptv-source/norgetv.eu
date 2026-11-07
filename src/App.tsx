@@ -35,7 +35,7 @@ const NOT_INDEXABLE = "noindex, follow";
 const payAlt: Record<string, string> = { sv: "Godkända betalningsmetoder", en: "Accepted payment methods", de: "Akzeptierte Zahlungsmethoden", nl: "Geaccepteerde betaalmethoden" };
 const socialHeading: Record<string, string> = { sv: "SOCIALA MEDIER", en: "SOCIAL MEDIA", de: "SOZIALE MEDIEN", nl: "SOCIALE MEDIA" };
 
-const HOME_LANGS = ["sv", "en"] as const;
+const HOME_LANGS = ["sv", "en", "no"] as const;
 type HomeLang = (typeof HOME_LANGS)[number];
 
 function isHomeLang(s: string): s is HomeLang {
@@ -54,7 +54,7 @@ type View =
 /** Extract the optional /{lang} prefix and the remaining path. */
 function parsePath(): { lang: HomeLang | null; rest: string } {
   const raw = window.location.pathname.replace(/\/+$/, "") || "/";
-  const m = raw.match(/^\/(sv|en)(\/.*)?$/);
+  const m = raw.match(/^\/(sv|en|no)(\/.*)?$/);
   if (m) return { lang: m[1] as HomeLang, rest: m[2]?.replace(/\/+$/, "") || "/" };
   return { lang: null, rest: raw };
 }
@@ -109,9 +109,9 @@ function GeoRedirect() {
         // English markets go to /en; Sweden and the Nordics (and everything
         // else) land on /sv, the default market.
         if (c === "GB" || c === "IE" || c === "US") window.location.replace("/en");
-        else window.location.replace("/sv");
+        else window.location.replace("/no");
       })
-      .catch(() => window.location.replace("/sv"));
+      .catch(() => window.location.replace("/no"));
   }, []);
 
   return (

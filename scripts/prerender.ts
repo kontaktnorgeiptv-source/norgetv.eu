@@ -165,8 +165,7 @@ function hreflangSet(pathSuffix: string): HreflangLink[] {
 }
 
 function langToPrefix(lang: string): string {
-  if (lang === "sv" || lang === "en") return `/${lang}`;
-  return "/sv";
+  return lang ? `/${lang}` : "/en";
 }
 
 function postUrl(slug: string, lang?: string): string {
@@ -338,7 +337,7 @@ const BLOG_DESC: Record<string, string> = {
 
 // Swedish is the default market, so every core page (home/blog/villkor) is
 // prerendered in Swedish first, with English as the alternate market.
-const HOME_LANGS = ["sv", "en"];
+const HOME_LANGS = ["sv", "en", "no"];
 
 for (const blogLang of HOME_LANGS) {
   const prefix = langToPrefix(blogLang);
