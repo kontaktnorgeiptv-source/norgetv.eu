@@ -1,3 +1,4 @@
+import { KW_PILLARS } from "./kwPillars";
 import { SITE_URL as SITE, BRAND_NAME, WA_NUMBER } from "../siteConfig";
 import type { LangCode } from "../i18n";
 // SEO keyword landing pages. Single source of truth shared by the SPA router
@@ -54,7 +55,7 @@ const CORE_LINKS_SV =
 const GUARANTEE_SV =
   `Varje ${BRAND}-abonnemang innehåller hela kanal- och VOD-katalogen, 15 dagars återbetalningsgaranti och support dygnet runt via [WhatsApp](${WA}).`;
 
-const RAW_KEYWORD_PAGES: KeywordPage[] = [
+const RAW_KEYWORD_PAGES: KeywordPage[] = [...KW_PILLARS, 
   // ── Core intent ───────────────────────────────────────────────────────────
   {
     slug: "iptv-kopa",
