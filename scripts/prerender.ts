@@ -670,6 +670,10 @@ const PAGES_LASTMOD = "2026-10-29";
 // `imageLoc` emits a Google <image:image> entry so the post's hero image is
 // eligible for Google Images.
 type Alt = { hreflang: string; href: string };
+// <image:loc> (and <loc>) must be absolute URLs; post images are stored as
+// site-root-relative paths (e.g. "/movies/foo.jpg"), so resolve them to SITE.
+const absUrl = (u: string): string =>
+  /^https?:\/\//i.test(u) ? u : `${SITE}${u.startsWith("/") ? "" : "/"}${u}`;
 const urlEntry = (loc: string, lastmod: string, alternates: Alt[] = [], imageLoc?: string) =>
   [
     "  <url>",
@@ -678,7 +682,7 @@ const urlEntry = (loc: string, lastmod: string, alternates: Alt[] = [], imageLoc
     ...alternates.map(
       (a) => `    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`
     ),
-    ...(imageLoc ? [`    <image:image><image:loc>${esc(imageLoc)}</image:loc></image:image>`] : []),
+    ...(imageLoc ? [`    <image:image><image:loc>${esc(absUrl(imageLoc))}</image:loc></image:image>`] : []),
     "  </url>",
   ].join("\n");
 
